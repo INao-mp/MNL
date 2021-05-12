@@ -1,27 +1,21 @@
 # =============== #
 # Unity generated #
 # =============== #
-//Xcode/
-//XcodeSimulator/
-//Build/
-//Temp/
-//Library/
-//Logs/
-//obj/
-//UnityGenerated/
-//Xcode/
-//XcodeSimulator/
-//Build/
-//Temp/
-//Library/
-//Logs/
-//obj/
-//UnityGenerated/
+
+
+NL/Xcode/
+NL/XcodeSimulator/
+NL/Build/
+NL/Builds/
+NL/Temp/
+NL/Library/
+NL/Logs/
+NL/obj/
+NL/UnityGenerated/
 .vs/
-.vsconfig
 .idea
-/_TerrainAutoUpgrade/
-/_TerrainAutoUpgrade.meta
+/Assets/_TerrainAutoUpgrade/
+/Assets/_TerrainAutoUpgrade.meta
 
 # ============= #
 # IDE generated #
