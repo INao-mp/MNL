@@ -2,7 +2,15 @@
 # Unity generated #
 # =============== #
 
-
+PL1/Xcode/
+PL1/XcodeSimulator/
+PL1/Build/
+PL1/Builds/
+PL1/Temp/
+PL1/Library/
+PL1/Logs/
+PL1/obj/
+PL1/UnityGenerated/
 NL/Xcode/
 NL/XcodeSimulator/
 NL/Build/
