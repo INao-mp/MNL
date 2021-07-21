@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour {
