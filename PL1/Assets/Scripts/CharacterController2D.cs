@@ -19,6 +19,8 @@ public class CharacterController2D : MonoBehaviour
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
 
+    Transform playerGra;
+
     [Header("Events")]
     [Space]
 
@@ -39,6 +41,13 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
+
+        playerGra = transform.Find("Idle");
+
+        if (playerGra == null)
+        {
+            Debug.Log("Noooo");
+        }
     }
 
     private void FixedUpdate()
@@ -55,6 +64,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 m_Grounded = true;
                 if (!wasGrounded)
+                    Debug.Log(colliders[i].gameObject);
                     OnLandEvent.Invoke();
             }
         }
@@ -140,8 +150,9 @@ public class CharacterController2D : MonoBehaviour
         m_FacingRight = !m_FacingRight;
 
         // Multiply the player's x local scale by -1.
-        Vector3 theScale = transform.localScale;
+        Vector3 theScale = playerGra.localScale;
         theScale.x *= -1;
-        transform.localScale = theScale;
+        playerGra.localScale = theScale;
+
     }
 }
