@@ -5,11 +5,12 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public float fireRate = 0;
-    public float Dmg = 10;
+    public int Dmg = 10;
     public float EspawnRate = 10;
     public LayerMask WhatHit;
     public Transform BulTrial;
     public Transform MuzzleFlash;
+    public Transform HitPrefab;
 
     float TTF = 0;
     float TTSe = 0;
@@ -49,23 +50,58 @@ public class Weapon : MonoBehaviour
         Vector2 mousePosition = new Vector2 (Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
         Vector2 firePointPos = new Vector2(firePoint.position.x, firePoint.position.y);
         RaycastHit2D hit = Physics2D.Raycast(firePointPos, mousePosition - firePointPos, 100, WhatHit);
-        if (Time.time >= TTSe)
-        {
-            Effect();
-            TTSe = Time.time + 1 / EspawnRate;
-        }
 
         Debug.DrawLine(firePointPos, (mousePosition-firePointPos)*100, Color.black);
         if (hit.collider != null)
         {
             Debug.DrawLine(firePointPos, mousePosition, Color.red);
-            Debug.Log("We hit: " + hit.collider + " and did " + Dmg + " damage.");
+            Enemy enemy = hit.collider.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                Debug.Log("We hit: " + hit.collider + " and did " + Dmg + " damage.");
+                enemy.DamageEnemy(Dmg);
+            }
+        }
+
+        if (Time.time >= TTSe)
+        {
+            Vector3 hitPos;
+            Vector3 hitNormal;
+
+            if (hit.collider == null)
+            {
+                hitPos = (mousePosition - firePointPos) * 30;
+                hitNormal = new Vector3(999, 999, 999);
+            }
+            else
+            {
+                hitPos = hit.point;
+                hitNormal = hit.normal;
+            }
+
+            Effect(hitPos, hitNormal);
+            TTSe = Time.time + 1 / EspawnRate;
         }
     }
 
-    void Effect()
+    void Effect(Vector3 hitPos, Vector3 hitNormal)
     {
-        Instantiate(BulTrial, firePoint.position, firePoint.rotation);
+        Transform trail = (Transform)Instantiate(BulTrial, firePoint.position, firePoint.rotation);
+        LineRenderer lr = trail.GetComponent<LineRenderer>();
+
+        if (lr != null)
+        {
+            lr.SetPosition(0, firePoint.position);
+            lr.SetPosition(1, hitPos);
+        }
+
+        Destroy(trail.gameObject, 0.03f);
+        if (hitNormal != new Vector3(999,999,999))
+        {
+           Transform hitPaticle =(Transform)Instantiate(HitPrefab,hitPos,Quaternion.FromToRotation(Vector3.right, hitNormal));
+            Destroy(hitPaticle, 0.5f);
+        }
+
         Transform clone = (Transform)Instantiate(MuzzleFlash, firePoint.position, firePoint.rotation);
         clone.parent = firePoint;
         float size = Random.Range(0.6f, 0.9f);

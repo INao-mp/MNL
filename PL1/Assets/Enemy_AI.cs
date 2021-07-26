@@ -19,6 +19,7 @@ public class Enemy_AI : MonoBehaviour
     private Seeker seeker;
     private Rigidbody2D rb;
     private int currentWayPoint = 0;
+    private bool searchForPlayer = false;
 
     void Start()
     {
@@ -27,7 +28,11 @@ public class Enemy_AI : MonoBehaviour
 
         if (target == null)
         {
-            Debug.LogError("No target");
+            if (!searchForPlayer)
+            {
+                searchForPlayer = true;
+                StartCoroutine(SearchForPlayer());
+            }
             return;
         }
 
@@ -35,11 +40,34 @@ public class Enemy_AI : MonoBehaviour
         StartCoroutine (UpdatePath());
     }
 
+    IEnumerator SearchForPlayer()
+    {
+        GameObject sResult =  GameObject.FindGameObjectWithTag("Player");
+        if (sResult == null)
+        {
+            yield return new WaitForSeconds(0.5f);
+            StartCoroutine(SearchForPlayer());
+        }
+        else
+        {
+            target = sResult.transform;
+            searchForPlayer = false;
+            StartCoroutine(UpdatePath());
+            yield return false;
+
+        }
+    }
+
     IEnumerator UpdatePath()
     {
         if (target == null)
         {
-             yield return false;
+            if (!searchForPlayer)
+            {
+                searchForPlayer = true;
+                StartCoroutine(SearchForPlayer());
+            }
+            yield return false;
         }
 
         seeker.StartPath (transform.position, target.position, OnPathComplete);
@@ -62,6 +90,11 @@ public class Enemy_AI : MonoBehaviour
     {
         if (target == null)
         {
+            if (!searchForPlayer)
+            {
+                searchForPlayer = true;
+                StartCoroutine(SearchForPlayer());
+            }
             return;
         }
 
