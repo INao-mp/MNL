@@ -6,7 +6,7 @@ public class GM_Main : MonoBehaviour
 {
     public static GM_Main gm;
 
-    void Start()
+    void Awake()
     {
         if (gm == null)
         {

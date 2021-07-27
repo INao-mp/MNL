@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public float fireRate = 0;
     public int Dmg = 10;
+    public float fireRate = 0;
     public float EspawnRate = 10;
+    public float camShakeAmt = 0.1f;
+    public float camShakeLength = 0.05f;
     public LayerMask WhatHit;
     public Transform BulTrial;
     public Transform MuzzleFlash;
@@ -15,13 +17,23 @@ public class Weapon : MonoBehaviour
     float TTF = 0;
     float TTSe = 0;
     Transform firePoint;
+    CameraShake camShake;
 
     void Awake()
     {
         firePoint = transform.Find("FirePoint");
         if (firePoint == null)
         {
-            Debug.Log("Error!");
+            Debug.LogError("Error!");
+        }
+    }
+
+    void Start()
+    {
+        camShake = GM_Main.gm.GetComponent<CameraShake>();
+        if (camShake == null)
+        {
+            Debug.LogError("No camera Shake obj");
         }
     }
 
@@ -99,7 +111,7 @@ public class Weapon : MonoBehaviour
         if (hitNormal != new Vector3(999,999,999))
         {
            Transform hitPaticle =(Transform)Instantiate(HitPrefab,hitPos,Quaternion.FromToRotation(Vector3.right, hitNormal));
-            Destroy(hitPaticle, 0.5f);
+            Destroy(hitPaticle.gameObject, 0.5f);
         }
 
         Transform clone = (Transform)Instantiate(MuzzleFlash, firePoint.position, firePoint.rotation);
@@ -107,6 +119,8 @@ public class Weapon : MonoBehaviour
         float size = Random.Range(0.6f, 0.9f);
         clone.localScale = new Vector3(size, size, size);
         Destroy(clone.gameObject, 0.03f);
+
+        camShake.Shake(camShakeAmt, camShakeLength);
     }
     
 }
