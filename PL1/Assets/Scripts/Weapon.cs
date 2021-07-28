@@ -70,7 +70,7 @@ public class Weapon : MonoBehaviour
             Enemy enemy = hit.collider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                Debug.Log("We hit: " + hit.collider + " and did " + Dmg + " damage.");
+               // Debug.Log("We hit: " + hit.collider + " and did " + Dmg + " damage.");
                 enemy.DamageEnemy(Dmg);
             }
         }

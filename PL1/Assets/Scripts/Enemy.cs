@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     public class EnemyStats
     {
         public int maxHealth = 100;
+        public int dmg = 40;
 
         private int _curHealth;
         public int curHealth
@@ -22,6 +23,10 @@ public class Enemy : MonoBehaviour
 
     public EnemyStats stats = new EnemyStats();
 
+    public Transform deathPartcle;
+    public float shakeAmount = 0.1f;
+    public float shakeLength = 0.1f;
+
     [Header("Optional")]
     [SerializeField]
     private StatusIndicator statInd;
@@ -33,6 +38,11 @@ public class Enemy : MonoBehaviour
         if (statInd != null)
         {
             statInd.SetHealth(stats.curHealth, stats.maxHealth);
+        }
+
+        if (deathPartcle == null)
+        {
+            Debug.LogError("No death particles on enemy");
         }
     }
 
@@ -50,5 +60,16 @@ public class Enemy : MonoBehaviour
         {
             statInd.SetHealth(stats.curHealth, stats.maxHealth);
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D _collIfo)
+    {
+        Player _player = _collIfo.collider.GetComponent<Player>();
+        if (_player != null)
+        {
+            _player.DamagePlayer(stats.dmg);
+            DamageEnemy(99999);
+        }
+
     }
 }

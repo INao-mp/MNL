@@ -14,12 +14,21 @@ public class GM_Main : MonoBehaviour
         }    
     }
 
+    public int spawnDelay = 2;
     public Transform playerPrefabs;
     public Transform spawnPoint;
-    public int spawnDelay = 2;
     public Transform spawnPrefabs;
+    public CameraShake camShake;
     public AudioSource _audio;
-    
+
+    void Start()
+    {
+        if (camShake == null)
+        {
+            Debug.LogError("nu camera at GM");
+        }    
+    }
+
     public IEnumerator RespawnPlayer()
     {
         _audio.Play();
@@ -38,6 +47,14 @@ public class GM_Main : MonoBehaviour
 
     public static void KillEnemy(Enemy enemy)
     {
-        Destroy(enemy.gameObject);
+        gm._KillEnemy(enemy);
+    }
+
+    public void _KillEnemy(Enemy _enemy)
+    {
+        Transform _clone =  (Transform)Instantiate(_enemy.deathPartcle, _enemy.transform.position, Quaternion.identity);
+        Destroy(_clone.gameObject, 3f);
+        camShake.Shake(_enemy.shakeAmount, _enemy.shakeLength);
+        Destroy(_enemy.gameObject);
     }
 }
