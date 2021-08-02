@@ -6,6 +6,9 @@ public class GM_Main : MonoBehaviour
 {
     public static GM_Main gm;
 
+    [SerializeField]
+    private int maxLives = 3;
+
     private static int _remainingLives = 3;
     public static int RemainingLives
     {
@@ -27,17 +30,23 @@ public class GM_Main : MonoBehaviour
     public CameraShake camShake;
     public AudioSource _audio;
 
+    [SerializeField]
+    private GameObject gameOverUI;
+
     void Start()
     {
         if (camShake == null)
         {
             Debug.LogError("nu camera at GM");
-        }    
+        }
+
+        _remainingLives = maxLives;
     }
 
     public void EndGame()
     {
         Debug.Log("Game Over");
+        gameOverUI.SetActive(true);
     }
 
     public IEnumerator RespawnPlayer()
