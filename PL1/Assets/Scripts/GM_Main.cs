@@ -6,6 +6,12 @@ public class GM_Main : MonoBehaviour
 {
     public static GM_Main gm;
 
+    private static int _remainingLives = 3;
+    public static int RemainingLives
+    {
+        get { return _remainingLives; }
+    }
+
     void Awake()
     {
         if (gm == null)
@@ -29,6 +35,11 @@ public class GM_Main : MonoBehaviour
         }    
     }
 
+    public void EndGame()
+    {
+        Debug.Log("Game Over");
+    }
+
     public IEnumerator RespawnPlayer()
     {
         _audio.Play();
@@ -42,7 +53,15 @@ public class GM_Main : MonoBehaviour
     public static void KillPlayer(Player player)
     {
         Destroy(player.gameObject);
+        _remainingLives -= 1;
+        if (_remainingLives <= 0)
+        {
+            gm.EndGame();
+        }
+        else
+        {
         gm.StartCoroutine(gm.RespawnPlayer());
+        }
     }
 
     public static void KillEnemy(Enemy enemy)
