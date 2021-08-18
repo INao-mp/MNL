@@ -2,6 +2,38 @@
 # Unity generated #
 # =============== #
 
+Test_HC_1/Xcode/
+Test_HC_1/XcodeSimulator/
+Test_HC_1/Build/
+Test_HC_1/Builds/
+Test_HC_1/Temp/
+Test_HC_1/Library/
+Test_HC_1/Logs/
+Test_HC_1/obj/
+Test_HC_1/UnityGenerated/
+
+
+
+Take All/Xcode/
+Take All/XcodeSimulator/
+Take All/Build/
+Take All/Builds/
+Take All/Temp/
+Take All/Library/
+Take All/Logs/
+Take All/obj/
+Take All/UnityGenerated/
+
+Container (not URP)/Xcode/
+Container (not URP)/XcodeSimulator/
+Container (not URP)/Build/
+Container (not URP)/Builds/
+Container (not URP)/Temp/
+Container (not URP)/Library/
+Container (not URP)/Logs/
+Container (not URP)/obj/
+Container (not URP)/UnityGenerated/
+
 PL1/Xcode/
 PL1/XcodeSimulator/
 PL1/Build/
