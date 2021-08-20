@@ -11,9 +11,17 @@ Test_HC_1/Library/
 Test_HC_1/Logs/
 Test_HC_1/obj/
 Test_HC_1/UnityGenerated/
-
-
-
+--------------------------------
+TD/Xcode/
+TD/XcodeSimulator/
+TD/Build/
+TD/Builds/
+TD/Temp/
+TD/Library/
+TD/Logs/
+TD/obj/
+TD/UnityGenerated/
+--------------------------------
 Take All/Xcode/
 Take All/XcodeSimulator/
 Take All/Build/
@@ -23,7 +31,7 @@ Take All/Library/
 Take All/Logs/
 Take All/obj/
 Take All/UnityGenerated/
-
+--------------------------------
 Container (not URP)/Xcode/
 Container (not URP)/XcodeSimulator/
 Container (not URP)/Build/
@@ -33,7 +41,7 @@ Container (not URP)/Library/
 Container (not URP)/Logs/
 Container (not URP)/obj/
 Container (not URP)/UnityGenerated/
-
+--------------------------------
 PL1/Xcode/
 PL1/XcodeSimulator/
 PL1/Build/
@@ -56,6 +64,7 @@ NL/UnityGenerated/
 .idea
 /Assets/_TerrainAutoUpgrade/
 /Assets/_TerrainAutoUpgrade.meta
+--------------------------------
 
 # ============= #
 # IDE generated #
