@@ -356,9 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac8561fdb22003408af9239195d7aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 5
+  startSpeed: 10
   speed: 10
-  startHealth: 10000
+  startHealth: 100
   MoneyGain: 50
   DEffect: {fileID: 85211928666058800, guid: 8ecc54f80bf220f47b663bf6bd9dc842, type: 3}
   HealthBar: {fileID: 4071349674237314057}
