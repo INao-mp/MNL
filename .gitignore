@@ -51,6 +51,9 @@ PL1/Library/
 PL1/Logs/
 PL1/obj/
 PL1/UnityGenerated/
+
+--------------------------------
+
 NL/Xcode/
 NL/XcodeSimulator/
 NL/Build/
@@ -64,6 +67,25 @@ NL/UnityGenerated/
 .idea
 /Assets/_TerrainAutoUpgrade/
 /Assets/_TerrainAutoUpgrade.meta
+
+--------------------------------
+
+
+Test PR(Smash)/Xcode/
+Test PR(Smash)/XcodeSimulator/
+Test PR(Smash)/Build/
+Test PR(Smash)/Builds/
+Test PR(Smash)/Temp/
+Test PR(Smash)/Library/
+Test PR(Smash)/Logs/
+Test PR(Smash)/obj/
+Test PR(Smash)/UnityGenerated/
+.vs/
+.idea
+/Assets/_TerrainAutoUpgrade/
+/Assets/_TerrainAutoUpgrade.meta
+
+
 --------------------------------
 
 # ============= #
